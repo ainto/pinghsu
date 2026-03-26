@@ -2,11 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="<?php $this->options->charset(); ?>"><?php if ($this->options->DnsPrefetch): ?>
-    <meta http-equiv="x-dns-prefetch-control" content="on"><?php if ($this->options->cdn_add): ?>
-    <link rel="dns-prefetch" href="<?php $this->options->cdn_add(); ?>" /><?php endif; ?>
-    <link rel="dns-prefetch" href="//cdn.bootcss.com" />
-    <link rel="dns-prefetch" href="//secure.gravatar.com" /><?php endif; ?>
+    <meta charset="<?php $this->options->charset(); ?>">
+
+    <?php if ($this->options->DnsPrefetch): ?><meta http-equiv="x-dns-prefetch-control" content="on">
+    <?php if ($this->options->cdn_add != '' && filter_var($this->options->cdn_add, FILTER_VALIDATE_URL) !== false): ?><link rel="dns-prefetch" href="//<?php echo parse_url($this->options->cdn_add, PHP_URL_HOST); ?>" />
+    <?php endif; ?><?php if ($this->options->libCDN == 'able' && $this->options->cdn_prefix != '' && filter_var($this->options->cdn_prefix, FILTER_VALIDATE_URL) !== false): ?><link rel="dns-prefetch" href="//<?php echo parse_url($this->options->cdn_prefix, PHP_URL_HOST); ?>" />
+    <?php endif; ?><?php if ($this->options->gravatar_mirror != '' && filter_var($this->options->gravatar_mirror, FILTER_VALIDATE_URL) !== false): ?><link rel="dns-prefetch" href="//<?php echo parse_url($this->options->gravatar_mirror, PHP_URL_HOST); ?>" /><?php endif; ?>
+    <?php endif; ?>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -23,17 +26,17 @@
     ), '', ' - '); ?><?php $this->options->title(); ?></title>
     <meta name="keywords" content="<?php $this->keywords(); ?>" />
     <?php $this->header('keywords=&generator=&template=&pingback=&xmlrpc=&wlw=&commentReply=&rss1=&rss2=&atom='); ?>
-    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/xcode.min.css" rel="stylesheet">
+    <link href="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>highlight.js/11.11.1/styles/xcode.min.css" rel="stylesheet">
     <link href="<?php $this->options->themeUrl('style.min.css?20240216'); ?>" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="<?php if (isset($this->___fields()['archive'])): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-white<?php elseif(!$this->is('single')): ?>bg-grey<?php endif; ?>" gtools_scp_screen_capture_injected="true">
 <!--[if lt IE 8]>
 <div class="browsehappy" role="dialog">
-    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
+    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="https://browsehappy.com/" target="_blank">升级你的浏览器</a>。
 </div>
 <![endif]-->
 <header id="header" class="header bg-white">

@@ -55,7 +55,7 @@
 <div id="directory-content" class="directory-content">
     <nav class="toc js-toc"></nav>
 </div>
-<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/tocbot/4.18.2/tocbot.min.js"></script>
+<script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>tocbot/4.36.4/tocbot.min.js"></script>
 <?php endif; ?>
 <?php if(($this->is('single')) && ($this->allow('comment'))): ?>
 <script>
@@ -136,15 +136,15 @@ addCommentInputValue();
 </script>
 <?php endif; ?>
 <?php $this->footer(); ?>
-<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/headroom/0.12.0/headroom.min.js"></script>
+<script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>headroom/0.12.0/headroom.min.js"></script>
 <?php if ($this->options->useHighline == 'able'): ?>
-<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+<script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>highlight.js/11.11.1/highlight.min.js"></script>
 <?php endif; ?>
 <?php if ($this->options->pjaxSet == 'able'): ?>
-<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/instantclick/3.1.0/instantclick.min.js"></script>
+<script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>instantclick/3.1.0/instantclick.min.js"></script>
 <?php endif; ?>
 <?php if ($this->options->fastClickSet == 'able'): ?>
-<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>fastclick/1.0.6/fastclick.min.js"></script>
 <?php endif; ?>
 <script>
 <?php if (($this->options->tableOfContents == 'able') && ($this->is('post'))): ?>
@@ -224,7 +224,7 @@ MathJax.Hub.Config({
 });
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="<?php echo ($this->options->libCDN == 'disable')? $this->options->themeUrl('libs/'):$this->options->cdn_prefix; ?>mathjax/2.7.9/mathjax.min.js"></script>
 <?php endif; ?>
 <?php if($this->options->GoogleAnalytics): ?>
 <?php $this->options->GoogleAnalytics(); ?>

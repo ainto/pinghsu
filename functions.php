@@ -14,6 +14,13 @@ function themeConfig($form) {
     $searchPage = new Typecho_Widget_Helper_Form_Element_Text('searchPage', NULL, NULL, _t('搜索页地址'), _t('输入你的 Template Page of Search 的页面地址,记得带上 http:// 或 https://'));
     $form->addInput($searchPage->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
 
+    $libCDN = new Typecho_Widget_Helper_Form_Element_Radio('libCDN',
+    array('able' => _t('启用'),
+        'disable' => _t('禁止'),
+    ),
+    'disable', _t('静态资源CDN'), _t('默认禁止，静态公共JS及CSS的CDN开关，关闭时使用主题themes\pinghsu\libs文件夹内的资源，开启时请设置后面的‘静态资源CDN URL前缀’'));
+    $form->addInput($libCDN);
+
     $pjaxSet = new Typecho_Widget_Helper_Form_Element_Radio('pjaxSet',
         array('able' => _t('启用'),
             'disable' => _t('禁止'),
@@ -25,7 +32,7 @@ function themeConfig($form) {
         array('able' => _t('启用'),
             'disable' => _t('禁止'),
         ),
-        'disable', _t('DNS预解析加速'), _t('默认禁止，启用则会对CDN资源和Gravatar进行加速'));
+        'disable', _t('DNS预解析加速'), _t('默认禁止，启用则会对CDN资源和Gravatar进行加速，静态资源CDN及设置的镜像也会被预解析'));
     $form->addInput($DnsPrefetch);
 
     $htmlCompress = new Typecho_Widget_Helper_Form_Element_Radio('htmlCompress',
@@ -121,6 +128,10 @@ function themeConfig($form) {
 
     $ICPRecordNumber = new Typecho_Widget_Helper_Form_Element_Text('ICPRecordNumber', NULL, '', _t('ICP备案号'),_t('ICP备案号，一般为你备案申请审批通过后返回的认证序列号，也就是ICP备案号，一般为粤XXXXXXX'));
     $form->addInput($ICPRecordNumber->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
+
+    $cdn_prefix = new Typecho_Widget_Helper_Form_Element_Text('cdn_prefix', NULL, '', _t('静态资源CDN URL前缀'), _t('只填括号内的 (https://CDN域名/ajax/libs/)这里开始是库名，如：https://cdn.bootcdn.net/ajax/libs/，设置错误并开启 静态资源CDN 会无法加载相关资源'));
+    $form->addInput($cdn_prefix);
+
     $gravatar_mirror = new Typecho_Widget_Helper_Form_Element_Text('gravatar_mirror', NULL, '', _t('更换 Gravatar 头像源'), _t('默认源：https://secure.gravatar.com，注意最后是没有斜杠/的，大陆可选：https://cravatar.cn'));
     $form->addInput($gravatar_mirror);
 }
