@@ -121,6 +121,8 @@ function themeConfig($form) {
 
     $ICPRecordNumber = new Typecho_Widget_Helper_Form_Element_Text('ICPRecordNumber', NULL, '', _t('ICP备案号'),_t('ICP备案号，一般为你备案申请审批通过后返回的认证序列号，也就是ICP备案号，一般为粤XXXXXXX'));
     $form->addInput($ICPRecordNumber->addRule('xssCheck', _t('请不要在链接中使用特殊字符')));
+    $gravatar_mirror = new Typecho_Widget_Helper_Form_Element_Text('gravatar_mirror', NULL, '', _t('更换 Gravatar 头像源'), _t('默认源：https://secure.gravatar.com，注意最后是没有斜杠/的，大陆可选：https://cravatar.cn'));
+    $form->addInput($gravatar_mirror);
 }
 
 function themeInit($archive){

@@ -37,7 +37,7 @@ $comments->alt(' comment-odd', ' comment-even');
 ?>">
     <div id="<?php $comments->theId(); ?>">
         <?php
-            $host = 'https://secure.gravatar.com';
+            $host = Helper::options()->gravatar_mirror;
             $url = '/avatar/';
             $size = '80';
             $default = 'mm';
